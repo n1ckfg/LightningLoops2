@@ -1,5 +1,5 @@
 Stroke Lifetime
-1000
+800
 
 Bloom Amount
 5

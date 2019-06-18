@@ -9,6 +9,7 @@ ArrayList<Stroke> strokesBuffer;
 boolean clicked = false;
 boolean isDrawing = false;
 int fps = 12;
+int realFps = 60;
 int markTime = 0;
 Frame frame;
 Settings settings;
@@ -17,8 +18,8 @@ void setup() {
   fullScreen(P3D);
   settings = new Settings("settings.txt");
   noCursor();
-  frameRate(30);
-  cam = new PeasyCam(this, 200);
+  frameRate(realFps);
+  cam = new PeasyCam(this, 400);
   strokesBuffer = new ArrayList<Stroke>();
   frame = new Frame(strokesBuffer);
   oscSetup();

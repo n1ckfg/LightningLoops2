@@ -27,7 +27,7 @@ void bloomSetup() {
 // For a simple scene, just put this at the end of the draw loop.
 void bloomDraw() {
   filter.bloom.apply(tex);
-  image(tex, ((width - tex.width)/2) - (width/2), -height/2);
+  image(tex, ((width - tex.width)/2) - (width/2), ((height - tex.height)/2) - (height/2));
 }
 
 // Or, for a more complex scene, this goes at the beginning of the draw loop...
