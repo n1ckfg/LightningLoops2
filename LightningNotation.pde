@@ -12,7 +12,8 @@ int markTime = 0;
 Frame frame;
 
 void setup() {
-  size(640, 480, P3D);
+  fullScreen(P3D);
+  noCursor();
   frameRate(60);
   cam = new PeasyCam(this, 200);
   strokesBuffer = new ArrayList<Stroke>();
