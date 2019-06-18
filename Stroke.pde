@@ -39,7 +39,7 @@ class Stroke {
     col = c;
     points = pts;
     timestamp = millis();
-    lifespan = life;
+    lifespan = int(random(life/10, life*10));
   }
   
   void draw() {

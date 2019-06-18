@@ -4,7 +4,7 @@ import xyscope.*;
 XYscope xy1;
 //XYscope xy2;
 
-float xy1ampOrig = 0.05;
+float xy1ampOrig = 0.01;
 //float xy2ampOrig = 1;
 float xy1amp = xy1ampOrig;
 //float xy2amp = xy2ampOrig;

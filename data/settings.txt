@@ -1,5 +1,11 @@
+Volume
+0.0025
+
 Stroke Lifetime
-800
+160
 
 Bloom Amount
-5
+3.5
+
+Framerate
+60
