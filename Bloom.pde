@@ -8,21 +8,26 @@ DwFilter filter;
 PGraphics3D tex;
 PMatrix mat_scene;
 
+float bloomMult = 3.5;
+float bloomRadius = 0.5;
+int texWidth = 960;
+int texHeight = 720;
+
 // This goes immediately after size().
 void bloomSetup() {  
   mat_scene = getMatrix();
-  tex = (PGraphics3D) createGraphics(width, height, P3D);
+  tex = (PGraphics3D) createGraphics(texWidth, texHeight, P3D);
   context = new DwPixelFlow(this);
   filter = new DwFilter(context);
   //filter.bloom.setBlurLayers(10);
-  filter.bloom.param.mult = 3.5; // 0.0-10.0
-  filter.bloom.param.radius = 0.5; // 0.0-1.0
+  filter.bloom.param.mult = bloomMult; // 0.0-10.0
+  filter.bloom.param.radius = bloomRadius; // 0.0-1.0
 }
 
 // For a simple scene, just put this at the end of the draw loop.
 void bloomDraw() {
   filter.bloom.apply(tex);
-  image(tex, -width/2, -height/2);
+  image(tex, ((width - tex.width)/2) - (width/2), -height/2);
 }
 
 // Or, for a more complex scene, this goes at the beginning of the draw loop...

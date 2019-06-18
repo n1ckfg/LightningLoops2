@@ -63,7 +63,7 @@ void oscEvent(OscMessage msg) {
       }
     }
     
-    Stroke newStroke = new Stroke(index, c, points);
+    Stroke newStroke = new Stroke(index, c, points, globalLifespan);
 
     boolean doReplace = false;
     int replaceIndex = 0;

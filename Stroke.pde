@@ -3,7 +3,7 @@ class Stroke {
   ArrayList<PVector> points;
   int index;
   int timestamp;
-  int lifespan = 100;
+  int lifespan = 1000;
   color col;
   
   Stroke() {
@@ -32,6 +32,14 @@ class Stroke {
     col = c;
     points = pts;
     timestamp = millis();
+  }
+  
+  Stroke(int idx, color c, ArrayList<PVector> pts, int life) {
+    index = idx;
+    col = c;
+    points = pts;
+    timestamp = millis();
+    lifespan = life;
   }
   
   void draw() {

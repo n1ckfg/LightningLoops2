@@ -4,17 +4,20 @@ PeasyCam cam;
 
 float dotSize = 1;
 int globalAlpha = 63;
+int globalLifespan = 1000;
 ArrayList<Stroke> strokesBuffer;
 boolean clicked = false;
 boolean isDrawing = false;
 int fps = 12;
 int markTime = 0;
 Frame frame;
+Settings settings;
 
 void setup() {
   fullScreen(P3D);
+  settings = new Settings("settings.txt");
   noCursor();
-  frameRate(60);
+  frameRate(30);
   cam = new PeasyCam(this, 200);
   strokesBuffer = new ArrayList<Stroke>();
   frame = new Frame(strokesBuffer);
@@ -22,6 +25,7 @@ void setup() {
   bloomSetup();
   soundOutSetup();
   //opticalFlowSetup();
+  
   fps = int((1.0/float(fps)) * 1000);
 }
 
@@ -47,5 +51,5 @@ void draw() {
   //opticalFlowDraw();
   bloomMatrixEnd();
 
-  surface.setTitle("" + frameRate);
+  //surface.setTitle("" + frameRate);
 }

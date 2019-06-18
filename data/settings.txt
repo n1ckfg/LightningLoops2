@@ -1,0 +1,5 @@
+Stroke Lifetime
+1000
+
+Bloom Amount
+5
