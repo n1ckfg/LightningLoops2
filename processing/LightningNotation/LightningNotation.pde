@@ -26,6 +26,7 @@ void setup() {
   strokesBuffer = new ArrayList<Stroke>();
   frame = new Frame(strokesBuffer);
   oscSetup();
+  //wsSetup();
   bloomSetup();
   soundOutSetup();
   sharpenSetup();

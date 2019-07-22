@@ -3,7 +3,7 @@ import websockets.*;
 WebsocketClient wsc;
 int wsNow;
 int wsInterval = 5000;
-String wsUrl = "ws://vr.fox-gieg.com/socket.io/?EIO=3&transport=websocket";
+String wsUrl = "ws://localhost:8090/socket.io/?EIO=3&transport=websocket";//"ws://vr.fox-gieg.com/socket.io/?EIO=3&transport=websocket";
 
 void wsSetup(){  
   wsc = new WebsocketClient(this, wsUrl);
