@@ -26,7 +26,7 @@ void setup() {
   strokesBuffer = new ArrayList<Stroke>();
   frame = new Frame(strokesBuffer);
   oscSetup();
-  //wsSetup();
+  wsSetup();
   bloomSetup();
   soundOutSetup();
   sharpenSetup();
@@ -44,6 +44,7 @@ void setup() {
 
 void draw() { 
   background(0);
+  wsUpdate();
   
   tex.beginDraw();
   

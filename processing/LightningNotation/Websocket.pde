@@ -2,17 +2,17 @@ import websockets.*;
 
 WebsocketClient wsc;
 int wsNow;
-int wsInterval = 5000;
-String wsUrl = "ws://localhost:8090/socket.io/?EIO=3&transport=websocket";//"ws://vr.fox-gieg.com/socket.io/?EIO=3&transport=websocket";
+int wsInterval = 1000;
+String wsUrl = "ws://localhost:8090"; //"ws://vr.fox-gieg.com:8080";
 
-void wsSetup(){  
+void wsSetup() {  
   wsc = new WebsocketClient(this, wsUrl);
   wsNow = millis();
 }
 
-void wsUpdate(){
-  if(millis() > wsNow + 5000) {
-    wsc.sendMessage("Client message");
+void wsUpdate() {
+  if(millis() > wsNow +  wsInterval) {
+    wsc.sendMessage("clientRequestFrame");
     wsNow = millis();
   }
 }
