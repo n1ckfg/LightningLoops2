@@ -2,10 +2,10 @@ import websockets.*;
 
 WebsocketClient wsc;
 int wsNow;
-int wsInterval = 100;
+int wsInterval = 83;
 String wsUrl = "ws://vr.fox-gieg.com:8080";
 float wsGlobalScale = 500;
-PVector wsGlobalOffset = new PVector(120, 580, -2000);
+PVector wsGlobalOffset = new PVector(450, 200, -1000);
 
 void wsSetup() {
   wsc = new WebsocketClient(this, wsUrl);

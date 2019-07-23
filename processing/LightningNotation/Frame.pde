@@ -12,7 +12,11 @@ class Frame {
     xy1.clearWaves();
     
     for (int i=0; i<strokes.size(); i++) {
-      strokes.get(i).draw();
+      try {
+        strokes.get(i).draw();
+      } catch (Exception e) {
+        println("Error drawing stroke " + i + " in frame " + timestamp + ".");
+      }
     }
   }
 }
