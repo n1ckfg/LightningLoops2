@@ -43,7 +43,7 @@ void webSocketEvent(String msg) {
         float y = jsonPoint.getJSONArray("co").getFloat(1);
         float z = jsonPoint.getJSONArray("co").getFloat(2);
         PVector p = new PVector(x, -y, z).mult(wsGlobalScale).add(wsGlobalOffset);
-        println(p.x + " " + p.y + " " + p.z);
+        //println(p.x + " " + p.y + " " + p.z);
         points.add(p);
       }
       

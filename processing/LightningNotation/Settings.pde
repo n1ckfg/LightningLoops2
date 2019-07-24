@@ -12,6 +12,8 @@ class Settings {
     try {
       data = loadStrings(name);
       for (int i=0;i<data.length;i++) {
+        if (data[i].equals("Render Width")) texWidth = readInt(i);
+        if (data[i].equals("Render Height")) texHeight = readInt(i);
         if (data[i].equals("Volume")) xy1amp = readFloat(i);
         if (data[i].equals("Stroke Lifetime")) globalLifespan = readInt(i);
         if (data[i].equals("Bloom Amount")) bloomMult = readFloat(i);

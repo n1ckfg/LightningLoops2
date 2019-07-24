@@ -1,3 +1,9 @@
+Render Width
+960
+
+Render Height
+720
+
 Volume
 0.0025
 
