@@ -17,7 +17,7 @@ PVector posOrig;
 PVector poiOrig;
 
 void setup() {
-  fullScreen(P3D);
+  fullScreen(P3D, SPAN);
   settings = new Settings("settings.txt");
   noCursor();
   frameRate(realFps);
