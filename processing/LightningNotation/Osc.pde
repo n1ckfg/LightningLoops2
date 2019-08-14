@@ -22,6 +22,27 @@ void oscSetup() {
   hostList = new ArrayList<String>();
 }
 
+void sendOscContour(String hostname, int index, color col, ArrayList<PVector> points) {
+  OscMessage msg = new OscMessage("/contour");
+  
+  msg.add(hostname);
+  msg.add(index);
+  
+  float[] colFloats = { red(col)/255.0, green(col)/255.0, blue(col)/255.0, alpha(col)/255.0 };
+  msg.add(floatsToBytes(colFloats));
+  
+  float[] pointFloats = new float[points.size()*3];
+  for (int i=0; i<pointFloats.length; i+=3) {
+    PVector p = points.get(int(i/3));
+    pointFloats[i] = p.x;
+    pointFloats[i+1] = p.y;
+    pointFloats[i+2] = p.z;
+  }
+  msg.add(floatsToBytes(pointFloats));
+
+  oscP5.send(msg, myRemoteLocation); 
+}
+
 // Receive message example
 void oscEvent(OscMessage msg) {
   println(msg);

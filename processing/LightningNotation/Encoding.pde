@@ -112,7 +112,21 @@ void serializeFloats(float[] _floats, String _fileName) {
 }
 
 // http://forum.arduino.cc/index.php?topic=180456.0
-void floatsToBytes(float[] floats, String _fileName) {
+byte[] floatsToBytes(float[] floats) {
+  byte[] bytes = new byte[floats.length * 4];
+  
+  for(int i=0; i<floats.length; i++) {
+    int fi = Float.floatToIntBits(floats[i]);
+    bytes[(i*4)] = byte(fi & 0xFF);
+    bytes[(i*4)+1] = byte((fi >> 8) & 0xFF);
+    bytes[(i*4)+2] = byte((fi >> 16) & 0xFF);
+    bytes[(i*4)+3] = byte((fi >> 24) & 0xFF);
+  }
+  
+  return bytes;
+}
+
+void saveFloatsToBytes(float[] floats, String _fileName) {
   byte[] bytes = new byte[floats.length * 4];
   
   for(int i=0; i<floats.length; i++) {
