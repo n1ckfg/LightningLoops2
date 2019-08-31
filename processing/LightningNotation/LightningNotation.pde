@@ -17,7 +17,7 @@ PVector posOrig;
 PVector poiOrig;
 
 void setup() {
-  fullScreen(P3D, SPAN);
+  fullScreen(P3D);
   settings = new Settings("settings.txt");
   noCursor();
   frameRate(realFps);
@@ -26,7 +26,7 @@ void setup() {
   strokesBuffer = new ArrayList<Stroke>();
   frame = new Frame(strokesBuffer);
   oscSetup();
-  wsSetup();
+  if (useWebsockets) wsSetup();
   bloomSetup();
   soundOutSetup();
   sharpenSetup();
@@ -44,7 +44,7 @@ void setup() {
 
 void draw() { 
   background(0);
-  wsUpdate();
+  if (useWebsockets) wsUpdate();
   
   tex.beginDraw();
   

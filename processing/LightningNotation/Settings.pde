@@ -18,6 +18,7 @@ class Settings {
         if (data[i].equals("Stroke Lifetime")) globalLifespan = readInt(i);
         if (data[i].equals("Bloom Amount")) bloomMult = readFloat(i);
         if (data[i].equals("Framerate")) realFps = readInt(i);
+        if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
        }
     } 
     catch(Exception e) {
