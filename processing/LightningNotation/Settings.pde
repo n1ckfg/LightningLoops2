@@ -19,6 +19,7 @@ class Settings {
         if (data[i].equals("Bloom Amount")) bloomMult = readFloat(i);
         if (data[i].equals("Framerate")) realFps = readInt(i);
         if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
+        if (data[i].equals("Activity Threshold")) activityThreshold = readInt(i);
        }
     } 
     catch(Exception e) {

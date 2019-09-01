@@ -2,7 +2,7 @@ Render Width
 960
 
 Render Height
-720
+540
 
 Volume
 0.0025
@@ -18,3 +18,6 @@ Framerate
 
 Use Website
 false
+
+Activity Threshold 
+10
