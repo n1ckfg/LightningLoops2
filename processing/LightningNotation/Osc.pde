@@ -46,7 +46,7 @@ void sendOscContour(String hostname, int index, color col, ArrayList<PVector> po
 // Receive message example
 void oscEvent(OscMessage msg) {
   println(msg);
-  if (msg.checkAddrPattern("/contour") && msg.checkTypetag("sibb")) {    
+  if ((msg.checkAddrPattern("/contour") || msg.checkAddrPattern("/scanline")) && msg.checkTypetag("sibb")) {    
     String hostname = msg.get(0).stringValue();
     //String uniqueId = msg.get(1).stringValue();
     int index = msg.get(1).intValue();
