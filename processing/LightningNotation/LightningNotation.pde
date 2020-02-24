@@ -1,4 +1,4 @@
-float dotSize = 1;
+float dotSize = 0.5;
 int globalAlpha = 63;
 int globalLifespan = 1000;
 ArrayList<Stroke> strokesBuffer;
@@ -12,6 +12,7 @@ Settings settings;
 Cam cam;
 float camShake = 5.0;
 float camStable = 0.2;
+GameMode gameMode;
 
 PVector posOrig;
 PVector poiOrig;
@@ -19,6 +20,8 @@ PVector poiOrig;
 void setup() {
   fullScreen(P3D);
   settings = new Settings("settings.txt");
+  gameMode = GameMode.OFF;
+  
   noCursor();
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
@@ -46,8 +49,9 @@ void draw() {
   if (useWebsockets) wsUpdate();
   
   tex.beginDraw();
-
+  
   updateControls();
+  cam.controllable = gameMode == GameMode.CAM;
   cam.run();
   //tex.setMatrix(getMatrix());  // used with camera
   tex.background(0);

@@ -9,7 +9,9 @@ import java.awt.GraphicsEnvironment;
 //import processing.core.*;
 //import processing.event.KeyEvent;
 
-class Cam {
+class FrameProjector {
+  
+  Frame frame;
   
   boolean controllable;
   boolean enablePosition = true;
@@ -39,7 +41,7 @@ class Cam {
   PFont font;
   int fontSize = 12;
   
-  Cam() {
+  FrameProjector() {
     try {
       robot = new Robot();
     } catch (Exception e){}

@@ -10,6 +10,12 @@ boolean keySpace = false;
 
 void keyPressed() {
   checkKeyChar(key, true);
+  
+  if (keyCode==TAB) {
+    gameMode = gameMode.next();
+    cam.displayText = "" + gameMode;
+    println(gameMode);
+  }
 }
 
 void keyReleased() {
