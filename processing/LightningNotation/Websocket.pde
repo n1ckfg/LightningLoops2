@@ -39,10 +39,10 @@ void webSocketEvent(String msg) {
       
       ArrayList<PVector> points = new ArrayList<PVector>();
       for (int m=0; m<jsonStroke.getJSONArray("points").size(); m++) {
-        JSONObject jsonPoint = (JSONObject) jsonStroke.getJSONArray("points").get(m);
-        float x = jsonPoint.getJSONArray("co").getFloat(0);
-        float y = jsonPoint.getJSONArray("co").getFloat(1);
-        float z = jsonPoint.getJSONArray("co").getFloat(2);
+        JSONObject jsonLNPoint = (JSONObject) jsonStroke.getJSONArray("points").get(m);
+        float x = jsonLNPoint.getJSONArray("co").getFloat(0);
+        float y = jsonLNPoint.getJSONArray("co").getFloat(1);
+        float z = jsonLNPoint.getJSONArray("co").getFloat(2);
         PVector p = new PVector(x, -y, z).mult(wsGlobalScale).add(wsGlobalOffset);
         //println(p.x + " " + p.y + " " + p.z);
         points.add(p);

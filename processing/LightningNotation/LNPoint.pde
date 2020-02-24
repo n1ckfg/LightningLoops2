@@ -1,19 +1,19 @@
-class Point {
+class LNPoint {
   
   PVector pos;
   PVector col;
   
-  Point() {
+  LNPoint() {
     pos = new PVector(0,0,0);
     col = new PVector(255, 255, 255);
   }
   
-  Point(PVector p) {
+  LNPoint(PVector p) {
     pos = p;
     col = new PVector(255, 255, 255);
   }
   
-  Point(PVector p, PVector c) {
+  LNPoint(PVector p, PVector c) {
     pos = p;
     col = c;
   }
