@@ -5,8 +5,10 @@ enum GameMode {
   
   OFF,
   CAM,
-  DEPTH1,
-  DEPTH2 {
+  DEPTH1_POS,
+  DEPTH1_ROT,
+  DEPTH2_POS,
+  DEPTH2_ROT {
     @Override
     GameMode next() {
       // rollover to the first

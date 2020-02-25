@@ -18,9 +18,9 @@ void keyPressed() {
   } else if (key == 'c') {
     gameMode = GameMode.CAM;
   } else if (key == '1') {
-    gameMode = GameMode.DEPTH1;
+    gameMode = GameMode.DEPTH1_POS;
   } else if (key == '2') {
-    gameMode = GameMode.DEPTH1;
+    gameMode = GameMode.DEPTH2_POS;
   } else if (key == 'o') {
     settings.write();
   }
@@ -74,7 +74,7 @@ void updateControls() {
       if (keyE) cam.moveUp();
       if (keySpace) cam.reset();
       break;
-   case DEPTH1:
+   case DEPTH1_POS:
       if (keyW) frameProjector1.moveForward();
       if (keyS) frameProjector1.moveBack();
       if (keyA) frameProjector1.moveLeft();
@@ -83,7 +83,18 @@ void updateControls() {
       if (keyE) frameProjector1.moveUp();
       if (keySpace) frameProjector1.reset();
      break;
-   case DEPTH2:
+   case DEPTH1_ROT:
+      if (keyW) frameProjector1.rollUp();
+      if (keyS) frameProjector1.rollDown();
+      if (keyA) frameProjector1.pitchUp();
+      if (keyD) frameProjector1.pitchDown();
+      if (keyQ) frameProjector1.yawUp();
+      if (keyE) frameProjector1.yawDown();
+      if (keySpace) frameProjector1.reset();
+     break;     
+   case DEPTH2_POS:
+     break;
+   case DEPTH2_ROT:
      break;
   }
 

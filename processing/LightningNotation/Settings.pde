@@ -26,6 +26,7 @@ class Settings {
         if (data[i].equals("Cam Pan")) cam.pan = readFloat(i);
         if (data[i].equals("Cam Tilt")) cam.tilt = readFloat(i);
         if (data[i].equals("Depth1 Position")) frameProjector1.pos = readVector(i);
+        if (data[i].equals("Depth1 Rotation")) frameProjector1.q = readQuaternion(i);
       }
     } 
     catch(Exception e) {
@@ -42,6 +43,7 @@ class Settings {
         if (data[i].equals("Cam Pan")) writeFloat(cam.pan, i);
         if (data[i].equals("Cam Tilt")) writeFloat(cam.tilt, i);
         if (data[i].equals("Depth1 Position")) writeVector(frameProjector1.pos, i);
+        if (data[i].equals("Depth1 Rotation")) writeQuaternion(frameProjector1.q, i);
       }
       saveStrings("data/" + name, data);
     } catch (Exception e) {
@@ -123,7 +125,7 @@ class Settings {
       return endColor;
   }
 
-  PVector readVector(int index){
+  PVector readVector(int index) {
     String _s = data[index+1];
 
     PVector endPVector = new PVector(0,0,0);
@@ -163,6 +165,44 @@ class Settings {
       endPVector = new PVector(x,y,z);
     }
       return endPVector;
+  }
+  
+  Quaternion readQuaternion(int index) {
+    String _s = data[index+1];
+
+    Quaternion q = new Quaternion();
+    int commaCounter=0;
+    String sw = "";
+    String sx = "";
+    String sy = "";
+    String sz = "";
+    float w = 0;
+    float x = 0;
+    float y = 0;
+    float z = 0;
+
+    for (int i=0;i<_s.length();i++) {
+        if (_s.charAt(i)!=char(' ') && _s.charAt(i)!=char('(') && _s.charAt(i)!=char(')')) {
+          if (_s.charAt(i)==char(',')){
+            commaCounter++;
+          }else{
+          if (commaCounter==0) sw += _s.charAt(i);
+          if (commaCounter==1) sx += _s.charAt(i);
+          if (commaCounter==2) sy += _s.charAt(i);
+          if (commaCounter==3) sz += _s.charAt(i); 
+         }
+       }
+     }
+
+    if (sw!="" && sx!="" && sy!="" && sz!="") {
+      w = float(sw);
+      x = float(sx);
+      y = float(sy);
+      z = float(sz);
+      q = new Quaternion(w,x,y,z);
+    }
+    
+    return q;
   }
   
   String[] readStringArray(int index) {
@@ -213,6 +253,10 @@ class Settings {
 
   void writeVector(PVector p, int index) {
     data[index+1] = p.x + ", " + p.y + ", " + p.z;
+  }
+
+  void writeQuaternion(Quaternion q, int index) {
+    data[index+1] = q.w + ", " + q.x + ", " + q.y + ", " + q.z;
   }
 
 }

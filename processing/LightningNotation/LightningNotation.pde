@@ -20,13 +20,14 @@ PVector poiOrig;
 void setup() {
   size(900, 600, P3D);
   cam = new Cam();
+  frameProjector1 = new FrameProjector();
+
   settings = new Settings("settings.txt");
   gameMode = GameMode.OFF;
   
   noCursor();
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
-  frameProjector1 = new FrameProjector();
   frameProjector1.newFrame();
   oscSetup();
   if (useWebsockets) wsSetup();

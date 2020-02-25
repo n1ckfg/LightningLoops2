@@ -13,7 +13,9 @@ class FrameProjector {
   boolean enableMouse = true;
   float speed;
   float sensitivity;
-  PVector pos = new PVector(0,0,0);
+  PVector pos;
+  Quaternion q;
+  float rotDelta = 0.05;
   float pan;
   float tilt;
   PVector velocity;
@@ -25,7 +27,6 @@ class FrameProjector {
   //HashMap<Character, Boolean> keys;
 
   PGraphics3D p3d;
-  PMatrix3D proj, camMat, modvw, modvwInv, screen2Model;    
   String displayText = "";
   PFont font;
   int fontSize = 12;
@@ -37,44 +38,19 @@ class FrameProjector {
     sensitivity = 2f;
     reset();
     friction = 0.75f;  
-    initMats(); 
+    
+    pos = new PVector();
+    q = new Quaternion();
   }
   
   void newFrame() {
     frame = new Frame(strokesBuffer);
   }
-  
-  void initMats() {
-    p3d = (PGraphics3D) g;
-    //proj = new PMatrix3D();
-    camMat = new PMatrix3D();
-    //modvw = new PMatrix3D();
-    modvwInv = new PMatrix3D();
-    screen2Model = new PMatrix3D();    
-  }
-
- void calcPanTilt() {
-    //pan += map((width-rotMouse.x) - (width-pRotMouse.x), 0, width, 0, TWO_PI) * sensitivity;
-    //tilt += map((height-rotMouse.y) - (height-pRotMouse.y), 0, height, 0, PI) * sensitivity;
-    
-    tilt = clamp(tilt, -PI/2.01f, PI/2.01f);  
-    if (tilt == PI/2) tilt += 0.001f;
-  }
-  
-  void calcDirections() {
-    forward = new PVector(cos(pan), tan(tilt), sin(pan));
-    forward.normalize();
-    right = new PVector(cos(pan - PI/2), 0, sin(pan - PI/2));
-    right.normalize();
-    up = right.cross(forward);
-    up.normalize();
-  }
-  
+   
   void updateRotation() {
     if (enableRotation) {
-      calcPanTilt();
+      q.run();
     }
-    calcDirections();
   }
   
   void updatePosition() {
@@ -85,18 +61,12 @@ class FrameProjector {
   }
   
   void update() {
-    up = cam.up;
-    right = cam.right;
-    forward = cam.forward;
-      
     if (!controllable) return;
-    updateRotation();
     updatePosition();
+    updateRotation();
   }
   
   void draw(){
-    //tex.camera(pos.x, pos.y, pos.z, poi.x, poi.y, poi.z, up.x, up.y, up.z);
-    //drawText();
     tex.pushMatrix();
     tex.translate(pos.x, pos.y, pos.z);
     frame.draw();
@@ -127,34 +97,59 @@ class FrameProjector {
   }
   
   void moveForward() {
-    velocity.add(PVector.mult(forward, speed));
+    velocity.add(PVector.mult(cam.forward, speed));
   }
   
   void moveBack() {
-    velocity.sub(PVector.mult(forward, speed));
+    velocity.sub(PVector.mult(cam.forward, speed));
   }
   
   void moveLeft() {
-    velocity.sub(PVector.mult(right, speed));
+    velocity.sub(PVector.mult(cam.right, speed));
   }
   
   void moveRight() {
-    velocity.add(PVector.mult(right, speed));
+    velocity.add(PVector.mult(cam.right, speed));
   }
   
   void moveUp() {
-    velocity.sub(PVector.mult(up, speed));
+    velocity.sub(PVector.mult(cam.up, speed));
   }
   
   void moveDown() {
-    velocity.add(PVector.mult(up, speed));
+    velocity.add(PVector.mult(cam.up, speed));
   }
   
+  void rollUp() {
+    q.rotateAxisX(rotDelta);
+  }
+  
+  void rollDown() {
+    q.rotateAxisX(-rotDelta);
+  }
+  
+  void pitchUp() {
+    q.rotateAxisY(rotDelta);
+  }
+  
+  void pitchDown() {
+    q.rotateAxisY(-rotDelta);
+  }
+  
+  void yawUp() {
+    q.rotateAxisZ(rotDelta);
+  }
+  
+  void yawDown() {
+    q.rotateAxisZ(-rotDelta);  
+  }
+   
   void reset() {
-    velocity = new PVector(0, 0, 0);
+    velocity = new PVector();
     pan = 0f;
     tilt = 0f;
-    pos = new PVector(0, 0, 0);
+    pos = new PVector();
+    q = new Quaternion();
   }
   
 }
