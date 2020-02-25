@@ -89,8 +89,8 @@ void oscEvent(OscMessage msg) {
     boolean doReplace = false;
     int replaceIndex = 0;
     
-    for (int i=0; i<strokesBuffer.size(); i++) {
-      Stroke s = strokesBuffer.get(i);
+    for (int i=0; i<frameProjector1.strokesBuffer.size(); i++) {
+      Stroke s = frameProjector1.strokesBuffer.get(i);
       if (s.index == index) {
         replaceIndex = i;
         doReplace = true;
@@ -99,16 +99,16 @@ void oscEvent(OscMessage msg) {
     }
         
     if (doReplace) {
-      strokesBuffer.set(replaceIndex, newStroke);
+      frameProjector1.strokesBuffer.set(replaceIndex, newStroke);
     } else {
-      strokesBuffer.add(newStroke);
+      frameProjector1.strokesBuffer.add(newStroke);
     }
   
     int time = millis();
-    for (int i=0; i<strokesBuffer.size(); i++) {
-      Stroke s = strokesBuffer.get(i);
+    for (int i=0; i<frameProjector1.strokesBuffer.size(); i++) {
+      Stroke s = frameProjector1.strokesBuffer.get(i);
       if (time > s.timestamp + s.lifespan) {
-        strokesBuffer.remove(i);
+        frameProjector1.strokesBuffer.remove(i);
       }
     }
     

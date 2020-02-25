@@ -4,7 +4,8 @@
 class FrameProjector {
   
   Frame frame;
-  
+  ArrayList<Stroke> strokesBuffer;
+
   boolean controllable;
   boolean enablePosition = true;
   boolean enableRotation = true;
@@ -31,6 +32,7 @@ class FrameProjector {
   int fontSize = 12;
   
   FrameProjector() {
+    strokesBuffer = new ArrayList<Stroke>();
     controllable = true;
     speed = 3f;
     sensitivity = 2f;
@@ -39,8 +41,8 @@ class FrameProjector {
     initMats(); 
   }
   
-  void newFrame(ArrayList<Stroke> _strokes) {
-    frame = new Frame(_strokes);
+  void newFrame() {
+    frame = new Frame(strokesBuffer);
   }
   
   void initMats() {

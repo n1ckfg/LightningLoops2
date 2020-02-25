@@ -26,9 +26,8 @@ void setup() {
   noCursor();
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
-  strokesBuffer = new ArrayList<Stroke>();
   frameProjector1 = new FrameProjector();
-  frameProjector1.newFrame(strokesBuffer);
+  frameProjector1.newFrame();
   oscSetup();
   if (useWebsockets) wsSetup();
   bloomSetup();
@@ -60,7 +59,7 @@ void draw() {
   int time = millis();
   if (time > markTime + fps) {
     markTime = time;
-    frameProjector1.newFrame(strokesBuffer);
+    frameProjector1.newFrame();
   }
   
   frameProjector1.run();
