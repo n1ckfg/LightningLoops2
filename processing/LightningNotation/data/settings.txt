@@ -21,3 +21,18 @@ false
 
 Activity Threshold 
 10
+
+Cam Position
+784.8028, 1524.3391, 872.72156
+
+Cam Point of Interest
+784.1682, 1524.0676, 871.998
+
+Cam Up
+-0.35624906, -0.76207846, -0.5406691 
+
+Cam Pan
+4.4571357
+
+Cam Tilt
+0.026179846

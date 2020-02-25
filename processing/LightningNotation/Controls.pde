@@ -15,6 +15,14 @@ void keyPressed() {
     gameMode = gameMode.next();
     cam.displayText = "" + gameMode;
     println(gameMode);
+  } else if (key == 'c') {
+    gameMode = GameMode.CAM;
+  } else if (key == '1') {
+    gameMode = GameMode.DEPTH1;
+  } else if (key == '2') {
+    gameMode = GameMode.DEPTH1;
+  } else if (key == 'o') {
+    gameMode = GameMode.DEPTH1;
   }
 }
 

@@ -45,7 +45,7 @@ void sendOscContour(String hostname, int index, color col, ArrayList<PVector> po
 
 // Receive message example
 void oscEvent(OscMessage msg) {
-  println(msg);
+  //println(msg);
   if ((msg.checkAddrPattern("/contour") || msg.checkAddrPattern("/scanline")) && msg.checkTypetag("sibb")) {    
     String hostname = msg.get(0).stringValue();
     //String uniqueId = msg.get(1).stringValue();
@@ -62,7 +62,7 @@ void oscEvent(OscMessage msg) {
     float b = asFloat(bytesB);
     color c = color(255);
     if (!Float.isNaN(r) && !Float.isNaN(g) && !Float.isNaN(b)) {
-      println("COLOR: " + r + " " + g + " " + b);
+      //println("COLOR: " + r + " " + g + " " + b);
       c = color(r, g, b);
     }
  
@@ -80,7 +80,7 @@ void oscEvent(OscMessage msg) {
       if (!Float.isNaN(x) && !Float.isNaN(y)) { // && !Float.isNaN(z)) {
         PVector p = new PVector(x, y, -z);
         points.add(p);
-        println(p.x + ", " + p.z + ", " + p.y);
+        //println(p.x + ", " + p.z + ", " + p.y);
       }
     }
     
@@ -112,7 +112,7 @@ void oscEvent(OscMessage msg) {
       }
     }
     
-    println(hostname + " " + " " + index);
+    //println(hostname + " " + " " + index);
     
     if (hostList.size() >= numHosts) {
       if (hostname.equals(hostList.get(0))) {

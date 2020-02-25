@@ -20,7 +20,12 @@ class Settings {
         if (data[i].equals("Framerate")) realFps = readInt(i);
         if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
         if (data[i].equals("Activity Threshold")) activityThreshold = readInt(i);
-       }
+        if (data[i].equals("Cam Position")) cam.pos = readVector(i);
+        if (data[i].equals("Cam Point of Interest")) cam.poi = readVector(i);
+        if (data[i].equals("Cam Up")) cam.up = readVector(i);
+        if (data[i].equals("Cam Pan")) cam.pan = readFloat(i);
+        if (data[i].equals("Cam Tilt")) cam.tilt = readFloat(i);
+      }
     } 
     catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");

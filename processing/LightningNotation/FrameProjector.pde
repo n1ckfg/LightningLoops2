@@ -59,6 +59,10 @@ class FrameProjector {
     initMats(); 
   }
   
+  void newFrame(ArrayList<Stroke> _strokes) {
+    frame = new Frame(_strokes);
+  }
+  
   void initMats() {
     p3d = (PGraphics3D) g;
     //proj = new PMatrix3D();
@@ -172,8 +176,9 @@ class FrameProjector {
   }
   
   void draw(){
-    tex.camera(pos.x, pos.y, pos.z, poi.x, poi.y, poi.z, up.x, up.y, up.z);
-    drawText();
+    //tex.camera(pos.x, pos.y, pos.z, poi.x, poi.y, poi.z, up.x, up.y, up.z);
+    //drawText();
+    frame.draw();
   }
   
   void run() {
