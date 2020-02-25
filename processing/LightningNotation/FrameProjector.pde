@@ -5,7 +5,8 @@ class FrameProjector {
   
   Frame frame;
   ArrayList<Stroke> strokesBuffer;
-
+  String hostName;
+  
   boolean controllable;
   boolean enablePosition = true;
   boolean enableRotation = true;
@@ -18,11 +19,9 @@ class FrameProjector {
   PVector velocity;
   float friction;
 
-  PVector poi;
   PVector up;
   PVector right;
   PVector forward;
-  PVector mouse;
   //HashMap<Character, Boolean> keys;
 
   PGraphics3D p3d;
@@ -79,14 +78,17 @@ class FrameProjector {
   }
   
   void updatePosition() {
-    if (enablePosition) {
+    if (enablePosition) {  
       velocity.mult(friction);
       pos.add(velocity);
     }
-    poi = PVector.add(pos, forward);
   }
   
   void update() {
+    up = cam.up;
+    right = cam.right;
+    forward = cam.forward;
+      
     if (!controllable) return;
     updateRotation();
     updatePosition();
@@ -149,9 +151,6 @@ class FrameProjector {
   }
   
   void reset() {
-    up = cam.up;
-    right = cam.right;
-    forward = cam.forward;
     velocity = new PVector(0, 0, 0);
     pan = 0f;
     tilt = 0f;
