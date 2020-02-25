@@ -21,6 +21,7 @@ void setup() {
   size(900, 600, P3D);
   cam = new Cam();
   frameProjector1 = new FrameProjector();
+  frameProjector2 = new FrameProjector();
 
   settings = new Settings("settings.txt");
   gameMode = GameMode.OFF;
@@ -29,6 +30,7 @@ void setup() {
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
   frameProjector1.newFrame();
+  frameProjector2.newFrame();
   oscSetup();
   if (useWebsockets) wsSetup();
   bloomSetup();
@@ -61,9 +63,11 @@ void draw() {
   if (time > markTime + fps) {
     markTime = time;
     frameProjector1.newFrame();
+    frameProjector2.newFrame();
   }
   
   frameProjector1.run();
+  frameProjector2.run();
   
   sharpenDraw();
   //opticalFlowDraw();
@@ -75,5 +79,5 @@ void draw() {
   
   bloomDraw();
 
-  //surface.setTitle("" + frameRate);
+  surface.setTitle("" + frameRate);
 }

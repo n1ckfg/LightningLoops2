@@ -27,6 +27,8 @@ class Settings {
         if (data[i].equals("Cam Tilt")) cam.tilt = readFloat(i);
         if (data[i].equals("Depth1 Position")) frameProjector1.pos = readVector(i);
         if (data[i].equals("Depth1 Rotation")) frameProjector1.q = readQuaternion(i);
+        if (data[i].equals("Depth2 Position")) frameProjector2.pos = readVector(i);
+        if (data[i].equals("Depth2 Rotation")) frameProjector2.q = readQuaternion(i);
       }
     } 
     catch(Exception e) {
@@ -44,6 +46,8 @@ class Settings {
         if (data[i].equals("Cam Tilt")) writeFloat(cam.tilt, i);
         if (data[i].equals("Depth1 Position")) writeVector(frameProjector1.pos, i);
         if (data[i].equals("Depth1 Rotation")) writeQuaternion(frameProjector1.q, i);
+        if (data[i].equals("Depth2 Position")) writeVector(frameProjector2.pos, i);
+        if (data[i].equals("Depth2 Rotation")) writeQuaternion(frameProjector2.q, i);
       }
       saveStrings("data/" + name, data);
     } catch (Exception e) {
