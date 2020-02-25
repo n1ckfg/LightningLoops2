@@ -22,7 +22,7 @@ void keyPressed() {
   } else if (key == '2') {
     gameMode = GameMode.DEPTH1;
   } else if (key == 'o') {
-    gameMode = GameMode.DEPTH1;
+    settings.write();
   }
 }
 

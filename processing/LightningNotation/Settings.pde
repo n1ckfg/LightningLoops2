@@ -35,9 +35,13 @@ class Settings {
   void write() {
     try {
       for (int i=0;i<data.length;i++) {
-        //if (data[i].equals("Mirror")) writeBoolean(mirror, i);
+        if (data[i].equals("Cam Position")) writeVector(cam.pos, i);
+        if (data[i].equals("Cam Point of Interest")) writeVector(cam.poi, i);
+        if (data[i].equals("Cam Up")) writeVector(cam.up, i);
+        if (data[i].equals("Cam Pan")) writeFloat(cam.pan, i);
+        if (data[i].equals("Cam Tilt")) writeFloat(cam.tilt, i);
       }
-      saveStrings(name, data);
+      saveStrings("data/" + name, data);
     } catch (Exception e) {
       println("Failed to write settings file.");
     }
@@ -203,6 +207,10 @@ class Settings {
 
   void writeString(String s, int index) {
     data[index+1] = "" + s;
+  }
+
+  void writeVector(PVector p, int index) {
+    data[index+1] = p.x + ", " + p.y + ", " + p.z;
   }
 
 }

@@ -168,7 +168,7 @@ class Cam {
     updatePosition();
     if (enableMouse) screenToWorldMouse();
     
-    println("cam pos: " + pos + ", poi: " + poi + ", up: " + up + ", pan: " + pan + ", tilt: " + tilt);
+    //println("cam pos: " + pos + ", poi: " + poi + ", up: " + up + ", pan: " + pan + ", tilt: " + tilt);
   }
   
   void draw(){

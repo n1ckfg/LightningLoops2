@@ -18,7 +18,7 @@ PVector posOrig;
 PVector poiOrig;
 
 void setup() {
-  fullScreen(P3D);
+  size(900, 600, P3D);
   cam = new Cam();
   settings = new Settings("settings.txt");
   gameMode = GameMode.OFF;
