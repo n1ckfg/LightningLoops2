@@ -1,14 +1,6 @@
 // https://github.com/jrc03c/queasycam
 // https://processing.org/reference/camMatera_.html
 
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Robot;
-import java.awt.GraphicsEnvironment;
-//import java.util.HashMap;
-//import processing.core.*;
-//import processing.event.KeyEvent;
-
 class FrameProjector {
   
   Frame frame;
@@ -19,19 +11,16 @@ class FrameProjector {
   boolean enableMouse = true;
   float speed;
   float sensitivity;
-  PVector pos;
+  PVector pos = new PVector(0,0,0);
   float pan;
   float tilt;
   PVector velocity;
   float friction;
 
-  Robot robot;
   PVector poi;
   PVector up;
   PVector right;
   PVector forward;
-  Point rotMouse;
-  Point pRotMouse;
   PVector mouse;
   //HashMap<Character, Boolean> keys;
 
@@ -42,20 +31,11 @@ class FrameProjector {
   int fontSize = 12;
   
   FrameProjector() {
-    try {
-      robot = new Robot();
-    } catch (Exception e){}
-
     controllable = true;
     speed = 3f;
     sensitivity = 2f;
     reset();
-    friction = 0.75f;
-    //keys = new HashMap<Character, Boolean>();
-
-    //perspective(PI/3f, (float)width/(float)height, 0.01f, 1000f);
-    
-    font = createFont("Arial", fontSize);
+    friction = 0.75f;  
     initMats(); 
   }
   
@@ -72,71 +52,9 @@ class FrameProjector {
     screen2Model = new PMatrix3D();    
   }
 
-  PVector screenToWorldCoords(PVector p) {
-    //proj = p3d.projection.get();
-    camMat = p3d.modelview.get();
-    //modvw = p3d.modelview.get();
-    modvwInv = p3d.modelviewInv.get();
-    screen2Model = modvwInv;
-    screen2Model.apply(camMat);
-    float screen[] = { p.x, p.y, p.z };
-    float model[] = { 0, 0, 0 };
-    model = screen2Model.mult(screen, model);
-    
-    PVector returns = new PVector(model[0] + (poi.x - width/2), model[1] + (poi.y - height/2), model[2]);
-    //println(returns);
-    return returns;
-  }
-  
-  void screenToWorldMouse() {
-    mouse = screenToWorldCoords(new PVector(mouseX, mouseY, poi.z));
-  }
-
-  void drawText() {
-    if (!displayText.equals("")) {
-      pushMatrix();  
-      translate((pos.x - (width/2)) + (fontSize/2), (pos.y - (height/2)) + fontSize, poi.z);
-      textFont(font, fontSize);
-      text(displayText, 0, 0);
-      popMatrix();
-    }
-  }
-  
-  void getRotFromMouse() {
-    rotMouse = MouseInfo.getPointerInfo().getLocation();
-    if (pRotMouse == null) pRotMouse = new Point(rotMouse.x, rotMouse.y);
-    
-    int w = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
-    int h = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
-    
-    if (rotMouse.x < 1 && (rotMouse.x - pRotMouse.x) < 0){
-      robot.mouseMove(w-2, rotMouse.y);
-      rotMouse.x = w-2;
-      pRotMouse.x = w-2;
-    }
-        
-    if (rotMouse.x > w-2 && (rotMouse.x - pRotMouse.x) > 0){
-      robot.mouseMove(2, rotMouse.y);
-      rotMouse.x = 2;
-      pRotMouse.x = 2;
-    }
-    
-    if (rotMouse.y < 1 && (rotMouse.y - pRotMouse.y) < 0){
-      robot.mouseMove(rotMouse.x, h-2);
-      rotMouse.y = h-2;
-      pRotMouse.y = h-2;
-    }
-    
-    if (rotMouse.y > h-1 && (rotMouse.y - pRotMouse.y) > 0){
-      robot.mouseMove(rotMouse.x, 2);
-      rotMouse.y = 2;
-      pRotMouse.y = 2;
-    }
-  }
-    
-  void calcPanTilt() {
-    pan += map((width-rotMouse.x) - (width-pRotMouse.x), 0, width, 0, TWO_PI) * sensitivity;
-    tilt += map((height-rotMouse.y) - (height-pRotMouse.y), 0, height, 0, PI) * sensitivity;
+ void calcPanTilt() {
+    //pan += map((width-rotMouse.x) - (width-pRotMouse.x), 0, width, 0, TWO_PI) * sensitivity;
+    //tilt += map((height-rotMouse.y) - (height-pRotMouse.y), 0, height, 0, PI) * sensitivity;
     
     tilt = clamp(tilt, -PI/2.01f, PI/2.01f);  
     if (tilt == PI/2) tilt += 0.001f;
@@ -153,11 +71,9 @@ class FrameProjector {
   
   void updateRotation() {
     if (enableRotation) {
-      getRotFromMouse();
       calcPanTilt();
     }
     calcDirections();
-    if (enableRotation) pRotMouse = new Point(rotMouse.x, rotMouse.y);
   }
   
   void updatePosition() {
@@ -172,13 +88,15 @@ class FrameProjector {
     if (!controllable) return;
     updateRotation();
     updatePosition();
-    if (enableMouse) screenToWorldMouse();
   }
   
   void draw(){
     //tex.camera(pos.x, pos.y, pos.z, poi.x, poi.y, poi.z, up.x, up.y, up.z);
     //drawText();
+    tex.pushMatrix();
+    tex.translate(pos.x, pos.y, pos.z);
     frame.draw();
+    tex.popMatrix();
   }
   
   void run() {
@@ -228,29 +146,14 @@ class FrameProjector {
     velocity.add(PVector.mult(up, speed));
   }
   
-  void defaultPos() {
-    pos = new PVector(0,0,0);
-    pos.x = width/2.0;
-    pos.y = height/2.0;
-    pos.z = (height/2.0) / tan(PI*30.0 / 180.0);
-  }
-  
-  void defaultPoi() {
-    poi = new PVector(0,0,0);
-    poi.x = width/2.0;
-    poi.y = height/2.0;
-    poi.z = 0;
-  }
-  
   void reset() {
-    defaultPos();
-    defaultPoi();
-    up = new PVector(0, 1, 0);
-    right = new PVector(1, 0, 0);
-    forward = new PVector(0, 0, 1);
+    up = cam.up;
+    right = cam.right;
+    forward = cam.forward;
     velocity = new PVector(0, 0, 0);
     pan = 0f;
     tilt = 0f;
+    pos = new PVector(0, 0, 0);
   }
   
 }

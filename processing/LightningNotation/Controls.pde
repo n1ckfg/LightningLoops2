@@ -63,28 +63,30 @@ boolean checkKeyCode(int k, boolean b) {
 */
 
 void updateControls() {
-
-  if (keyW) cam.moveForward();
-  if (keyS) cam.moveBack();
-  if (keyA) cam.moveLeft();
-  if (keyD) cam.moveRight();
-  if (keyQ) cam.moveDown();
-  if (keyE) cam.moveUp();
   
-  /*
-  if (keyW) cam.move(new PVector(0, 0, -delta));
-  if (keyS) cam.move(new PVector(0, 0, delta));
-  if (keyA) cam.move(new PVector(-delta, 0, 0));
-  if (keyD) cam.move(new PVector(delta, 0, 0));
-  if (keyQ) cam.move(new PVector(0, delta, 0));
-  if (keyE) cam.move(new PVector(0, -delta, 0));
-  */
-  
-  if (keySpace) {
-    cam.reset();
+  switch (gameMode) {
+    case CAM:
+      if (keyW) cam.moveForward();
+      if (keyS) cam.moveBack();
+      if (keyA) cam.moveLeft();
+      if (keyD) cam.moveRight();
+      if (keyQ) cam.moveDown();
+      if (keyE) cam.moveUp();
+      if (keySpace) cam.reset();
+      break;
+   case DEPTH1:
+      if (keyW) frameProjector1.moveForward();
+      if (keyS) frameProjector1.moveBack();
+      if (keyA) frameProjector1.moveLeft();
+      if (keyD) frameProjector1.moveRight();
+      if (keyQ) frameProjector1.moveDown();
+      if (keyE) frameProjector1.moveUp();
+      if (keySpace) frameProjector1.reset();
+     break;
+   case DEPTH2:
+     break;
   }
-  
-  //if (mousePressed) cubes.add(new Cube());
+
 }
 
 void keysOff() {

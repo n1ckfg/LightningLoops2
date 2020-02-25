@@ -7,7 +7,7 @@ boolean isDrawing = false;
 int fps = 12;
 int realFps = 60;
 int markTime = 0;
-FrameProjector frameProjector;
+FrameProjector frameProjector1, frameProjector2;
 Settings settings;
 Cam cam;
 float camShake = 5.0;
@@ -27,8 +27,8 @@ void setup() {
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
   strokesBuffer = new ArrayList<Stroke>();
-  frameProjector = new FrameProjector();
-  frameProjector.newFrame(strokesBuffer);
+  frameProjector1 = new FrameProjector();
+  frameProjector1.newFrame(strokesBuffer);
   oscSetup();
   if (useWebsockets) wsSetup();
   bloomSetup();
@@ -60,10 +60,10 @@ void draw() {
   int time = millis();
   if (time > markTime + fps) {
     markTime = time;
-    frameProjector.newFrame(strokesBuffer);
+    frameProjector1.newFrame(strokesBuffer);
   }
   
-  frameProjector.run();
+  frameProjector1.run();
   
   sharpenDraw();
   //opticalFlowDraw();

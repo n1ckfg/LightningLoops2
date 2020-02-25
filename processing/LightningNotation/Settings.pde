@@ -25,6 +25,7 @@ class Settings {
         if (data[i].equals("Cam Up")) cam.up = readVector(i);
         if (data[i].equals("Cam Pan")) cam.pan = readFloat(i);
         if (data[i].equals("Cam Tilt")) cam.tilt = readFloat(i);
+        if (data[i].equals("Depth1 Position")) frameProjector1.pos = readVector(i);
       }
     } 
     catch(Exception e) {
@@ -40,6 +41,7 @@ class Settings {
         if (data[i].equals("Cam Up")) writeVector(cam.up, i);
         if (data[i].equals("Cam Pan")) writeFloat(cam.pan, i);
         if (data[i].equals("Cam Tilt")) writeFloat(cam.tilt, i);
+        if (data[i].equals("Depth1 Position")) writeVector(frameProjector1.pos, i);
       }
       saveStrings("data/" + name, data);
     } catch (Exception e) {
