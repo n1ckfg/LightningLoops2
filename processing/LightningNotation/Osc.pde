@@ -82,43 +82,13 @@ void oscEvent(OscMessage msg) {
         points.add(p);
         //println(p.x + ", " + p.z + ", " + p.y);
       }
-    }
-    
-    Stroke newStroke = new Stroke(index, c, points, globalLifespan);
-
-    boolean doReplace = false;
-    int replaceIndex = 0;
-    
-    for (int i=0; i<frameProjector1.strokesBuffer.size(); i++) {
-      Stroke s = frameProjector1.strokesBuffer.get(i);
-      if (s.index == index) {
-        replaceIndex = i;
-        doReplace = true;
-        break;
-      }
-    }
-        
-    if (doReplace) {
-      frameProjector1.strokesBuffer.set(replaceIndex, newStroke);
-    } else {
-      frameProjector1.strokesBuffer.add(newStroke);
-    }
-  
-    int time = millis();
-    for (int i=0; i<frameProjector1.strokesBuffer.size(); i++) {
-      Stroke s = frameProjector1.strokesBuffer.get(i);
-      if (time > s.timestamp + s.lifespan) {
-        frameProjector1.strokesBuffer.remove(i);
-      }
-    }
-    
-    //println(hostname + " " + " " + index);
+    } 
     
     if (hostList.size() >= numHosts) {
       if (hostname.equals(hostList.get(0))) {
-        //dot1 = new PVector(x * width, y * height);
+        frameProjector1.createStroke(index, c, points);
       } else {
-        //dot2 = new PVector(x * width, y * height);
+        frameProjector2.createStroke(index, c, points);
       }
     } else {
       hostList.add(hostname);

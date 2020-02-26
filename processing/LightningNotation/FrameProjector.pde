@@ -77,6 +77,36 @@ class FrameProjector {
     update();
     draw();
   }
+  
+  void createStroke(int index, color c, ArrayList<PVector> points) {
+    Stroke newStroke = new Stroke(index, c, points, globalLifespan);
+
+    boolean doReplace = false;
+    int replaceIndex = 0;
+    
+    for (int i=0; i<strokesBuffer.size(); i++) {
+      Stroke s = strokesBuffer.get(i);
+      if (s.index == index) {
+        replaceIndex = i;
+        doReplace = true;
+        break;
+      }
+    }
+        
+    if (doReplace) {
+      strokesBuffer.set(replaceIndex, newStroke);
+    } else {
+      strokesBuffer.add(newStroke);
+    }
+  
+    int time = millis();
+    for (int i=0; i<strokesBuffer.size(); i++) {
+      Stroke s = strokesBuffer.get(i);
+      if (time > s.timestamp + s.lifespan) {
+        strokesBuffer.remove(i);
+      }
+    }  
+  }
 
   float clamp(float x, float min, float max){
     if (x > max) return max;
