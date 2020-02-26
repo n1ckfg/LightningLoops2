@@ -67,15 +67,15 @@ class FrameProjector {
   }
   
   void draw(){
-    tex.pushMatrix();
-    tex.translate(pos.x, pos.y, pos.z);
     frame.draw();
-    tex.popMatrix();
   }
   
   void run() {
+    tex.pushMatrix();
+    tex.translate(pos.x, pos.y, pos.z);
     update();
     draw();
+    tex.popMatrix();
   }
   
   void createStroke(int index, color c, ArrayList<PVector> points) {

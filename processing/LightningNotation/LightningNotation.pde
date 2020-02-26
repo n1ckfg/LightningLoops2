@@ -13,12 +13,13 @@ Cam cam;
 float camShake = 5.0;
 float camStable = 0.2;
 GameMode gameMode;
+boolean useSound = false;
 
 PVector posOrig;
 PVector poiOrig;
 
 void setup() {
-  size(900, 600, P3D);
+  fullScreen(P3D);
   cam = new Cam();
   frameProjector1 = new FrameProjector();
   frameProjector2 = new FrameProjector();
@@ -69,7 +70,7 @@ void draw() {
   frameProjector1.run();
   frameProjector2.run();
   
-  sharpenDraw();
+  //sharpenDraw();
   //opticalFlowDraw();
   
   tex.endDraw();

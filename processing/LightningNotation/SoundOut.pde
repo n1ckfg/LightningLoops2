@@ -31,23 +31,23 @@ void soundOutSetup() {
 void soundOutDraw() {
   if (frameProjector1.frame.strokes.size() > activityThreshold) {
     try {
-    xy1.amp(xy1amp);
-    //xy2.amp(xy2amp);
+      xy1.amp(xy1amp);
+      //xy2.amp(xy2amp);
+        
+      // build audio from shapes
+      xy1.buildWaves();
+      //xy2.buildWaves();
       
-    // build audio from shapes
-    xy1.buildWaves();
-    //xy2.buildWaves();
-    
-    if (fadeOutAmp1) {
-      xy1amp -= deltaAmp;
-      if (xy1amp < 0) xy1amp = 0;
-    } 
-    /*
-    if (fadeOutAmp2) {
-      xy2amp -= deltaAmp;
-      if (xy2amp < 0) xy2amp = 0;
-    }
-    */
+      if (fadeOutAmp1) {
+        xy1amp -= deltaAmp;
+        if (xy1amp < 0) xy1amp = 0;
+      } 
+      /*
+      if (fadeOutAmp2) {
+        xy2amp -= deltaAmp;
+        if (xy2amp < 0) xy2amp = 0;
+      }
+      */
     } catch (Exception e) { }
   }
 }
