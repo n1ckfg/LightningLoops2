@@ -75,7 +75,7 @@ void oscEvent(OscMessage msg) {
       float z = asFloat(bytesZ);
       //float w = asFloat(bytesW);
       if (!Float.isNaN(x) && !Float.isNaN(y)) { // && !Float.isNaN(z)) {
-        PVector p = new PVector(y, z, x);
+        PVector p = new PVector(x, y, z);
         points.add(p);
         //println(p.x + ", " + p.z + ", " + p.y);
       }

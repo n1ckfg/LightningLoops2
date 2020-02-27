@@ -79,7 +79,7 @@ void draw() {
   
   tex.endDraw();
   
-  soundOutDraw();
+  //soundOutDraw();
   
   
   bloomDraw();
