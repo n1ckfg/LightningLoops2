@@ -83,8 +83,7 @@ boolean checkKeyCode(int k, boolean b) {
 }
 */
 
-void updateControls() {
-  
+void updateControls() { 
   switch (gameMode) {
     case CAM:
       if (keyW) cam.moveForward();
@@ -96,40 +95,40 @@ void updateControls() {
       if (keySpace) cam.reset();
       break;
    case DEPTH1_POS:
-      if (keyW) frameProjector1.moveForward();
-      if (keyS) frameProjector1.moveBack();
-      if (keyA) frameProjector1.moveLeft();
-      if (keyD) frameProjector1.moveRight();
-      if (keyQ) frameProjector1.moveDown();
-      if (keyE) frameProjector1.moveUp();
-      if (keySpace) frameProjector1.reset();
+      if (keyW) frameProjector.get(0).moveForward();
+      if (keyS) frameProjector.get(0).moveBack();
+      if (keyA) frameProjector.get(0).moveLeft();
+      if (keyD) frameProjector.get(0).moveRight();
+      if (keyQ) frameProjector.get(0).moveDown();
+      if (keyE) frameProjector.get(0).moveUp();
+      if (keySpace) frameProjector.get(0).reset();
      break;
    case DEPTH1_ROT:
-      if (keyW) frameProjector1.rollUp();
-      if (keyS) frameProjector1.rollDown();
-      if (keyA) frameProjector1.pitchUp();
-      if (keyD) frameProjector1.pitchDown();
-      if (keyQ) frameProjector1.yawUp();
-      if (keyE) frameProjector1.yawDown();
-      if (keySpace) frameProjector1.reset();
+      if (keyW) frameProjector.get(0).rollUp();
+      if (keyS) frameProjector.get(0).rollDown();
+      if (keyA) frameProjector.get(0).pitchUp();
+      if (keyD) frameProjector.get(0).pitchDown();
+      if (keyQ) frameProjector.get(0).yawUp();
+      if (keyE) frameProjector.get(0).yawDown();
+      if (keySpace) frameProjector.get(0).reset();
      break;     
    case DEPTH2_POS:
-      if (keyW) frameProjector2.moveForward();
-      if (keyS) frameProjector2.moveBack();
-      if (keyA) frameProjector2.moveLeft();
-      if (keyD) frameProjector2.moveRight();
-      if (keyQ) frameProjector2.moveDown();
-      if (keyE) frameProjector2.moveUp();
-      if (keySpace) frameProjector2.reset();
+      if (keyW) frameProjector.get(1).moveForward();
+      if (keyS) frameProjector.get(1).moveBack();
+      if (keyA) frameProjector.get(1).moveLeft();
+      if (keyD) frameProjector.get(1).moveRight();
+      if (keyQ) frameProjector.get(1).moveDown();
+      if (keyE) frameProjector.get(1).moveUp();
+      if (keySpace) frameProjector.get(1).reset();
      break;
    case DEPTH2_ROT:
-      if (keyW) frameProjector2.rollUp();
-      if (keyS) frameProjector2.rollDown();
-      if (keyA) frameProjector2.pitchUp();
-      if (keyD) frameProjector2.pitchDown();
-      if (keyQ) frameProjector2.yawUp();
-      if (keyE) frameProjector2.yawDown();
-      if (keySpace) frameProjector2.reset();
+      if (keyW) frameProjector.get(1).rollUp();
+      if (keyS) frameProjector.get(1).rollDown();
+      if (keyA) frameProjector.get(1).pitchUp();
+      if (keyD) frameProjector.get(1).pitchDown();
+      if (keyQ) frameProjector.get(1).yawUp();
+      if (keyE) frameProjector.get(1).yawDown();
+      if (keySpace) frameProjector.get(1).reset();
      break;
   }
 

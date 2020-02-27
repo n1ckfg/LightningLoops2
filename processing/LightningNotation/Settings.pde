@@ -20,15 +20,20 @@ class Settings {
         if (data[i].equals("Framerate")) realFps = readInt(i);
         if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
         if (data[i].equals("Activity Threshold")) activityThreshold = readInt(i);
+        
         if (data[i].equals("Cam Position")) cam.pos = readVector(i);
         if (data[i].equals("Cam Point of Interest")) cam.poi = readVector(i);
         if (data[i].equals("Cam Up")) cam.up = readVector(i);
         if (data[i].equals("Cam Pan")) cam.pan = readFloat(i);
         if (data[i].equals("Cam Tilt")) cam.tilt = readFloat(i);
-        if (data[i].equals("Depth1 Position")) frameProjector1.pos = readVector(i);
-        if (data[i].equals("Depth1 Rotation")) frameProjector1.q = readQuaternion(i);
-        if (data[i].equals("Depth2 Position")) frameProjector2.pos = readVector(i);
-        if (data[i].equals("Depth2 Rotation")) frameProjector2.q = readQuaternion(i);
+        
+        if (data[i].equals("Depth1 Name")) frameProjector.get(0).hostname = readString(i);
+        if (data[i].equals("Depth1 Position")) frameProjector.get(0).pos = readVector(i);
+        if (data[i].equals("Depth1 Rotation")) frameProjector.get(0).q = readQuaternion(i);
+        
+        if (data[i].equals("Depth2 Name")) frameProjector.get(1).hostname = readString(i);
+        if (data[i].equals("Depth2 Position")) frameProjector.get(1).pos = readVector(i);
+        if (data[i].equals("Depth2 Rotation")) frameProjector.get(1).q = readQuaternion(i);
       }
     } 
     catch(Exception e) {
@@ -44,10 +49,14 @@ class Settings {
         if (data[i].equals("Cam Up")) writeVector(cam.up, i);
         if (data[i].equals("Cam Pan")) writeFloat(cam.pan, i);
         if (data[i].equals("Cam Tilt")) writeFloat(cam.tilt, i);
-        if (data[i].equals("Depth1 Position")) writeVector(frameProjector1.pos, i);
-        if (data[i].equals("Depth1 Rotation")) writeQuaternion(frameProjector1.q, i);
-        if (data[i].equals("Depth2 Position")) writeVector(frameProjector2.pos, i);
-        if (data[i].equals("Depth2 Rotation")) writeQuaternion(frameProjector2.q, i);
+        
+        if (data[i].equals("Depth1 Name")) writeString(frameProjector.get(0).hostname, i);
+        if (data[i].equals("Depth1 Position")) writeVector(frameProjector.get(0).pos, i);
+        if (data[i].equals("Depth1 Rotation")) writeQuaternion(frameProjector.get(0).q, i);
+        
+        if (data[i].equals("Depth2 Name")) writeString(frameProjector.get(1).hostname, i);
+        if (data[i].equals("Depth2 Position")) writeVector(frameProjector.get(1).pos, i);
+        if (data[i].equals("Depth2 Rotation")) writeQuaternion(frameProjector.get(1).q, i);
       }
       saveStrings("data/" + name, data);
     } catch (Exception e) {

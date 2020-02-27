@@ -29,7 +29,7 @@ void soundOutSetup() {
 }
 
 void soundOutDraw() {
-  if (frameProjector1.frame.strokes.size() > activityThreshold) {
+  if (frameProjector.get(0).frame.strokes.size() > activityThreshold) {
     try {
       xy1.amp(xy1amp);
       //xy2.amp(xy2amp);

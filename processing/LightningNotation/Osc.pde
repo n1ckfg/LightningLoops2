@@ -3,8 +3,6 @@ import netP5.*;
 
 PVector dot1 = new PVector(0,0);
 PVector dot2 = new PVector(0,0);
-ArrayList<String> hostList;
-int numHosts = 2;
 
 String ipNumber = "127.0.0.1";
 int sendPort = 9998;
@@ -19,7 +17,6 @@ void oscSetup() {
   op.setDatagramSize(datagramSize);
   oscP5 = new OscP5(this, op);
   myRemoteLocation = new NetAddress(ipNumber, sendPort);
-  hostList = new ArrayList<String>();
 }
 
 void sendOscContour(String hostname, int index, color col, ArrayList<PVector> points) {
@@ -84,14 +81,25 @@ void oscEvent(OscMessage msg) {
       }
     } 
     
-    if (hostList.size() >= numHosts) {
-      if (hostname.equals(hostList.get(0))) {
-        frameProjector1.createStroke(index, c, points);
-      } else {
-        frameProjector2.createStroke(index, c, points);
+    boolean foundNewHost = true;
+    for (int i=0; i<frameProjector.size(); i++) {
+      if (frameProjector.get(i).hostname.equals(hostname)) {
+        frameProjector.get(i).createStroke(index, c, points);
+        frameProjector.get(i).hostnameConfirmed = true;
+        foundNewHost = false;
+        break;
       }
-    } else {
-      hostList.add(hostname);
+    }
+    
+    if (foundNewHost) {
+      for (int i=0; i<frameProjector.size(); i++) {
+        if (!frameProjector.get(i).hostnameConfirmed) {
+          frameProjector.get(i).hostname = hostname;
+          frameProjector.get(i).createStroke(index, c, points);
+          frameProjector.get(i).hostnameConfirmed = true;
+          break;
+        }
+      }
     }
   }
 }

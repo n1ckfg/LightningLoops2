@@ -5,7 +5,8 @@ class FrameProjector {
   
   Frame frame;
   ArrayList<Stroke> strokesBuffer;
-  String hostName;
+  String hostname;
+  boolean hostnameConfirmed = false;
   
   boolean controllable;
   boolean enablePosition = true;

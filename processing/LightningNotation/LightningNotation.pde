@@ -7,7 +7,7 @@ boolean isDrawing = false;
 int fps = 12;
 int realFps = 60;
 int markTime = 0;
-FrameProjector frameProjector1, frameProjector2;
+ArrayList<FrameProjector> frameProjector;
 Settings settings;
 Cam cam;
 float camShake = 5.0;
@@ -21,8 +21,9 @@ PVector poiOrig;
 void setup() {
   fullScreen(P3D);
   cam = new Cam();
-  frameProjector1 = new FrameProjector();
-  frameProjector2 = new FrameProjector();
+  frameProjector = new ArrayList<FrameProjector>();
+  frameProjector.add(new FrameProjector());
+  frameProjector.add(new FrameProjector());
 
   settings = new Settings("settings.txt");
   gameMode = GameMode.OFF;
@@ -30,8 +31,9 @@ void setup() {
   noCursor();
   frameRate(realFps);
   //cam = new PeasyCam(this, 400);
-  frameProjector1.newFrame();
-  frameProjector2.newFrame();
+  for (int i=0; i<frameProjector.size(); i++) {
+    frameProjector.get(i).newFrame();
+  }
   oscSetup();
   if (useWebsockets) wsSetup();
   bloomSetup();
@@ -63,12 +65,14 @@ void draw() {
   int time = millis();
   if (time > markTime + fps) {
     markTime = time;
-    frameProjector1.newFrame();
-    frameProjector2.newFrame();
+    for (int i=0; i<frameProjector.size(); i++) {
+      frameProjector.get(i).newFrame();
+    }
   }
   
-  frameProjector1.run();
-  frameProjector2.run();
+  for (int i=0; i<frameProjector.size(); i++) {
+    frameProjector.get(i).run();
+  }
   
   //sharpenDraw();
   //opticalFlowDraw();
