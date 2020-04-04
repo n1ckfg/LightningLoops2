@@ -7,6 +7,7 @@ String wsUrl = "ws://vr.fox-gieg.com:8080";
 float wsGlobalScale = 1;
 PVector wsGlobalOffset = new PVector(0, 0, 0);
 boolean useWebsockets = false;
+int targetProjector = 0;
 
 void wsSetup() {
   wsc = new WebsocketClient(this, wsUrl);
@@ -43,22 +44,24 @@ void webSocketEvent(String msg) {
         float x = jsonLNPoint.getJSONArray("co").getFloat(0);
         float y = jsonLNPoint.getJSONArray("co").getFloat(1);
         float z = jsonLNPoint.getJSONArray("co").getFloat(2);
-        PVector p = new PVector(x, -y, z).mult(wsGlobalScale).add(wsGlobalOffset);
+        PVector p = new PVector(x, y, -z).mult(wsGlobalScale).add(wsGlobalOffset);
         //println(p.x + " " + p.y + " " + p.z);
         points.add(p);
       }
       
-    Stroke newStroke = new Stroke(i, c, points, globalLifespan);
-    strokesBuffer.add(newStroke);
-  
-    int time = millis();
-    for (int j=0; j<strokesBuffer.size(); j++) {
-      Stroke s = strokesBuffer.get(i);
-      if (time > s.timestamp + s.lifespan) {
-        strokesBuffer.remove(j);
+      Stroke newStroke = new Stroke(i, c, points, globalLifespan);
+      frameProjector.get(targetProjector).strokesBuffer.add(newStroke);
+    
+      /*
+      int time = millis();
+      for (int j=0; j<strokesBuffer.size(); j++) {
+        Stroke s = strokesBuffer.get(i);
+        if (time > s.timestamp + s.lifespan) {
+          strokesBuffer.remove(j);
+        }
       }
+      */
     }
-  }
   } catch (Exception e) {
     println("Error receiving ws message: " + e);
   }

@@ -32,10 +32,10 @@ Use Website
 true
 
 Website Scale
-1000
+100
 
 Website Offset
-0, 0, 0
+200, 0, 600
 
 Activity Threshold 
 10
