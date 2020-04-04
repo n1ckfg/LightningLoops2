@@ -7,17 +7,32 @@ Render Height
 Volume
 0.0025
 
+Use Sound
+true
+
 Stroke Lifetime
 160
 
+Stroke Weight
+1
+
+Stroke Alpha
+32
+
 Bloom Amount
-3.5
+5.5
 
 Framerate
 60
 
 Use Website
 true
+
+Website Scale
+500
+
+Website Offset
+450, 200, -1000
 
 Activity Threshold 
 10

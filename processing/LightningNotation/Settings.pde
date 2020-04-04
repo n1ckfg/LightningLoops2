@@ -14,13 +14,21 @@ class Settings {
       for (int i=0;i<data.length;i++) {
         if (data[i].equals("Render Width")) texWidth = readInt(i);
         if (data[i].equals("Render Height")) texHeight = readInt(i);
-        if (data[i].equals("Volume")) xy1amp = readFloat(i);
-        if (data[i].equals("Stroke Lifetime")) globalLifespan = readInt(i);
-        if (data[i].equals("Bloom Amount")) bloomMult = readFloat(i);
         if (data[i].equals("Framerate")) realFps = readInt(i);
-        if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
+        if (data[i].equals("Bloom Amount")) bloomMult = readFloat(i);
         if (data[i].equals("Activity Threshold")) activityThreshold = readInt(i);
+
+        if (data[i].equals("Volume")) xy1amp = readFloat(i);
+        if (data[i].equals("Use Sound")) useSound = readBoolean(i);
         
+        if (data[i].equals("Stroke Lifetime")) globalLifespan = readInt(i);
+        if (data[i].equals("Stroke Weight")) dotSize = readFloat(i);
+        if (data[i].equals("Stroke Alpha")) globalAlpha = readInt(i);
+
+        if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
+        if (data[i].equals("Website Scale")) wsGlobalScale = readFloat(i);
+        if (data[i].equals("Website Offset")) wsGlobalOffset = readVector(i);
+               
         if (data[i].equals("Cam Position")) cam.pos = readVector(i);
         if (data[i].equals("Cam Point of Interest")) cam.poi = readVector(i);
         if (data[i].equals("Cam Up")) cam.up = readVector(i);
