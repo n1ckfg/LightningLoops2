@@ -26,6 +26,7 @@ class Settings {
         if (data[i].equals("Stroke Alpha")) globalAlpha = readInt(i);
 
         if (data[i].equals("Use Website")) useWebsockets = readBoolean(i);
+        if (data[i].equals("Website Url")) wsUrl = readString(i);
         if (data[i].equals("Website Scale")) wsGlobalScale = readFloat(i);
         if (data[i].equals("Website Offset")) wsGlobalOffset = readVector(i);
                

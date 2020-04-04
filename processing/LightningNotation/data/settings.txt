@@ -25,6 +25,9 @@ Bloom Amount
 Framerate
 60
 
+Website Url
+ws://vr.fox-gieg.com:8080
+
 Use Website
 true
 
