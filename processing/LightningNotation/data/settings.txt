@@ -5,7 +5,7 @@ Render Height
 540
 
 Volume
-0.0025
+0.05
 
 Use Sound
 true
@@ -32,10 +32,10 @@ Use Website
 true
 
 Website Scale
-500
+1000
 
 Website Offset
-450, 200, -1000
+0, 0, 0
 
 Activity Threshold 
 10

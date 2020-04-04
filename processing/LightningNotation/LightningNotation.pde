@@ -37,7 +37,7 @@ void setup() {
   oscSetup();
   if (useWebsockets) wsSetup();
   bloomSetup();
-  soundOutSetup();
+  if (useSound) soundOutSetup();
   sharpenSetup();
   //opticalFlowSetup();
   
@@ -79,9 +79,8 @@ void draw() {
   
   tex.endDraw();
   
-  //soundOutDraw();
-  
-  
+  if (useSound) soundOutDraw();
+    
   bloomDraw();
 
   surface.setTitle("" + frameRate);
