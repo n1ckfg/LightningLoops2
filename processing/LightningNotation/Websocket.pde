@@ -4,8 +4,8 @@ WebsocketClient wsc;
 int wsNow;
 int wsInterval = 83;
 String wsUrl = "ws://vr.fox-gieg.com:8080";
-float wsGlobalScale = 500;
-PVector wsGlobalOffset = new PVector(450, 200, -1000);
+float wsGlobalScale = 1;
+PVector wsGlobalOffset = new PVector(0, 0, 0);
 boolean useWebsockets = false;
 
 void wsSetup() {
