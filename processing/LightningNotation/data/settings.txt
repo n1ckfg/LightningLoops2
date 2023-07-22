@@ -29,7 +29,7 @@ Website Url
 ws://vr.fox-gieg.com:8080
 
 Use Website
-true
+false
 
 Website Scale
 100
