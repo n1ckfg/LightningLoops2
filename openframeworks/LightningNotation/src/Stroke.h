@@ -1,5 +1,5 @@
 #pragma once
-#include "ofxiOS.h"
+#include "ofApp.h"
 
 class Stroke {
     
