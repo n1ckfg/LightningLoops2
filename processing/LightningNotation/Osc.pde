@@ -43,12 +43,12 @@ void sendOscContour(String hostname, int index, color col, ArrayList<PVector> po
 // Receive message example
 void oscEvent(OscMessage msg) {
   //println(msg);
-  if ((msg.checkAddrPattern("/contour") || msg.checkAddrPattern("/scanline")) && msg.checkTypetag("sibb")) {    
+  if ((msg.checkAddrPattern("/contour") || msg.checkAddrPattern("/scanline")) && msg.checkTypetag("ssibbi")) {    
     String hostname = msg.get(0).stringValue();
     //String uniqueId = msg.get(1).stringValue();
-    int index = msg.get(1).intValue();
-    byte[] readColorBytes = msg.get(2).blobValue();
-    byte[] readLNPointsBytes = msg.get(3).blobValue();
+    int index = msg.get(2).intValue();
+    byte[] readColorBytes = msg.get(3).blobValue();
+    byte[] readLNPointsBytes = msg.get(4).blobValue();
    
     byte[] bytesR = { readColorBytes[0], readColorBytes[1], readColorBytes[2], readColorBytes[3] };
     byte[] bytesG = { readColorBytes[4], readColorBytes[5], readColorBytes[6], readColorBytes[7] };
@@ -72,7 +72,7 @@ void oscEvent(OscMessage msg) {
 
       float x = asFloat(bytesX);
       float y = asFloat(bytesY);
-      float z = asFloat(bytesZ);
+      float z = asFloat(bytesZ) * 10;
       //float w = asFloat(bytesW);
       if (!Float.isNaN(x) && !Float.isNaN(y)) { // && !Float.isNaN(z)) {
         PVector p = new PVector(x, y, z);
