@@ -1,0 +1,74 @@
+Render Width
+960
+
+Render Height
+540
+
+Volume
+0.2
+
+Use Sound
+true
+
+Stroke Lifetime
+160
+
+Stroke Weight
+1
+
+Stroke Alpha
+128
+
+Bloom Amount
+5.5
+
+Framerate
+60
+
+Website Url
+ws://vr.fox-gieg.com:8080
+
+Use Website
+false
+
+Website Scale
+100
+
+Website Offset
+200, 0, 600
+
+Activity Threshold 
+10
+
+Cam Position
+-262.6432, -20.240622, 172.6593
+
+Cam Point of Interest
+-262.9872, -20.350357, 173.59183
+
+Cam Up
+0.037981097, -0.9939609, -0.102952026
+
+Cam Pan
+1.9242263
+
+Cam Tilt
+-0.10995603
+
+Depth1 Name
+RPi_230802195122064
+
+Depth1 Position
+-396.22733, -128.78487, 70.8756
+
+Depth1 Rotation
+0.97479385, 0.0, 0.22310634, 0.0
+
+Depth2 Name
+RPi_230802195031641
+
+Depth2 Position
+-211.86278, -117.56686, 27.594107
+
+Depth2 Rotation
+0.9950039, 0.0, 0.099833414, 0.0
