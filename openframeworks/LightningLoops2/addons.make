@@ -1,2 +1,2 @@
-ofxJSON
 ofxOsc
+ofxLws

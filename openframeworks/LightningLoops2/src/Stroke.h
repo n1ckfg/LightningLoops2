@@ -1,33 +1,21 @@
 #pragma once
-#include "ofApp.h"
+#include "ofMain.h"
+
+class XYScope;
 
 class Stroke {
-    
-    public:
-        Stroke();
-        Stroke(ofColor c);
-        Stroke(float s);
-        Stroke(ofColor c, float s);
-        Stroke(ofTexture &_tex);
-        Stroke(ofColor c, ofTexture &_tex);
-        Stroke(float s, ofTexture &_tex);
-        Stroke(ofColor c, float s, ofTexture &_tex);
-        virtual ~Stroke(){};
 
-        void run();
-        void init();
-        void splitStroke();
-        void smoothStroke();
-        void refine();
-    
-        vector<ofVec3f> points;
-        float strokeSize = 10.0;
-        ofColor strokeColor = ofColor(255);
-        int splitReps = 2;
-        int smoothReps = 10;
-        bool drawMesh = true;
-        bool useTexture = true;
-        ofTexture tex;
-        float w, h;
+    public:
+        Stroke(int idx, ofColor c, const vector<glm::vec3>& pts, int life);
+
+        void draw(ofMesh& mesh, int alpha) const;
+        void drawScope(XYScope& scope) const;
+        bool isExpired(uint64_t time) const;
+
+        vector<glm::vec3> points;
+        int index;
+        uint64_t timestamp;
+        int lifespan = 1000;
+        ofColor col;
 
 };
